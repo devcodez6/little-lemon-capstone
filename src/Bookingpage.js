@@ -48,9 +48,7 @@ import {useEffect} from "react"
   </form>
 </>
 
-    );
-       
-      
+    ); 
     export default App
         
       
