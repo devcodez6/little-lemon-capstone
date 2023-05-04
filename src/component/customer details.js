@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import{validateEmail  }  from '../src/utils'
 import './App.css';
 
@@ -10,8 +11,9 @@ import './App.css';
 
 
 function App() {
-        setFirstName("");
+       setFirstName ("");
         setLastName("");
+        setTel("");
         setEmail("");
         setPassword({
             value:"",
@@ -28,7 +30,6 @@ function App() {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Account created!");
     clearForm();
 };
 
@@ -61,10 +62,11 @@ return (
  <div className="App"></div>
  <div className="Field">
      <label>
-        Last name 
+        Last name <sup>*</sup>
     </label>
  <input 
     value={LastName}
+    required
     onChange={(e) =>{
         setLastName(e.target.value);
     } }
@@ -72,12 +74,27 @@ return (
     />
 </div>
 
+<div>
+        <label htmlFor="phonenum">Phone number</label> <br></br>
+        <input
+        type="text"
+        id="phonenum"
+        placeholder="(xxx)-xxx-xxx"
+        required
+        value={tel}
+        onChange={(e) =>{ setTel(e.target.value)}}
+        ></input>
+      </div>
+
+
+
 <div className="Field">
     <label>
        Email address <sup>*</sup>
     </label>
     <input 
     value={email}
+    required
     onChange={(e) =>{
         setEmail(e.target.value);
     } }
@@ -99,11 +116,29 @@ return (
     setPassword({ ...password,isTouched: true});
   } }
 placeholder="Password"
+required
 />
 {password.isTouched && password.value.lengh <8? 
     <PasswordErrorMessage/>
  : null}
 </div>
+
+<div>
+      <label htmlFor="prefrences">Seating prefences</label> <br></br>
+      <textarea
+      id="comments"
+      rows={8}
+      cols={50}
+      placeholder="Additional Comments"
+      value={comments}
+      onChange={(e) => setComments(e.target.value)}
+      ></textarea>
+      </div>
+     
+     <div>
+        <h3>Continue</h3>
+     </div>
+
 </form>
 </div>
 
@@ -118,15 +153,15 @@ placeholder="Password"
 
 
 
-const clearForm = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPassword({
-        value:"",
-        isTouched:false, 
-    });
-    steRole("role");
-}
+// const clearForm = () => {
+//     setFirstName("");
+//     setLastName("");
+//     setEmail("");
+//     setPassword({
+//         value:"",
+//         isTouched:false, 
+//     });
+//     steRole("role");
+//}
 
 export default App
